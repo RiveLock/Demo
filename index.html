@@ -4,6 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
 		<script src="js/jquery.js"></script>
 		<script>
 			$(function() {
@@ -104,20 +105,44 @@
 	</head>
 
 	<body>
-		<ol id="Ol">
-			<li id="haha">1</li>
-			<li>2</li>
-			<li>3</li>
-			<li>4</li>
-		</ol>
-		<input id="btnAdd1" type="button" value="jquery添加数据" />
-		<input id="btnAdd2" type="button" value="dom添加数据" />
-		<input id="btnDel1" type="button" value="jquery删除数据" />
-		<input id="btnDel2" type="button" value="dom删除数据" />
-		<input id="btnInsert1" type="button" value="jquery插入数据" />
-		<input id="btnInsert2" type="button" value="dom插入数据" />
-		<input id="btnEdit1" type="button" value="jquery编辑数据" />
-		<input id="btnEdit2" type="button" value="dom编辑数据" />
+		<div style="width: 1000px; margin: 0 auto;">
+			<div id="div_btn">
+				<div id="div_add" style="float: left; margin: 20px;">
+					<label class="btn_show">添加</label>					
+					<input class="btn_show" id="btnAdd1" type="button" value="jquery添加数据 " />
+					<input class="btn_show" id="btnAdd2" type="button" value="dom添加数据 " />
+
+					<input class="btn_show" id="btnInsert1" type="button" value="jquery插入数据 " />
+					<input class="btn_show" id="btnInsert2" type="button" value="dom插入数据 " />
+				</div>
+				<div id="div_del" style="float: left; margin: 20px;">
+					<label class="btn_show">删除</label>	
+					<input class="btn_show" id="btnDel1" type="button" value="jquery删除数据 " />
+					<input class="btn_show" id="btnDel2" type="button" value="dom删除数据 " />
+				</div>
+				<div id="div_mod" style="float: left; margin: 20px;">
+					<label class="btn_show">修改</label>	
+					<input class="btn_show" id="btnEdit1" type="button" value="jquery编辑数据 " />
+					<input class="btn_show" id="btnEdit2 " type="button" value="dom编辑数据 " />
+				</div>
+				<div id="div_query" style="float: left; margin: 20px;">
+					<label class="btn_show">查找</label>	
+					<input class="btn_show" id="btnEdit13" type="button" value="jquery编辑数据 " />
+					<input class="btn_show" id="btnEdit2" type="button" value="dom编辑数据 " />
+				</div>
+			</div>
+
+			<div style="clear: left;">
+				<ol id="Ol ">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ol>
+			</div>
+
+		</div>
+
 	</body>
 
 </html>
