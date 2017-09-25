@@ -1,2 +1,2 @@
 # Demo
-[DOM增删改查预览](https://rivelock.github.io/Demo/test1.html)
+[DOM增删改查预览](https://rivelock.github.io/Demo/index.html)
