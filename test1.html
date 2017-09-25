@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var i = 0;
+			function createnode() {
+				if(i < 9) {
+					i++;
+					var option = document.createElement("option");
+					option.value = i;
+					option.innerHTML = "Node" + i.toString();
+					document.getElementById("number").appendChild(option);
+
+					var p = document.createElement("p");
+					p.innerHTML = "Node" + i.toString();
+					document.getElementById("d").appendChild(p);
+				} else
+					alert("爷行行好了，太多节点，臣妾做不到啊~");
+			}
+
+			function removenode() {
+				if(i > 0) {
+					i--;
+					var s = document.getElementById("number");
+					s.removeChild(s.lastChild);
+					var d = document.getElementById("d");
+					d.removeChild(d.lastChild);
+				} else
+					alert("没有节点，删个毛线啊~");
+
+				/*var ps = d.getElementsByTagName("p");*/
+				/*document.getElementById("d").removeChild(ps[9]); */
+			}
+
+			function replacenode() {
+				if(i > 0) {
+					var d = document.getElementById("d");
+					var p = document.createElement("p");
+					p.innerHTML = document.getElementById("text").value;
+					var ps = d.getElementsByTagName("p")
+					d.replaceChild(p, ps[document.getElementById("number").value - 1]);
+				} else
+					alert("没有节点，替换个毛线啊~");
+			}
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="创建节点" onclick="createnode()" />
+		<input type="button" value="删除最后一个节点" onclick="removenode()" />
+		<select id="number"></select>
+		<input type="text" id="text" />
+		<input type="button" value="替换节点内容" onclick="replacenode()" />
+		<div id="d">
+		</div>
+	</body>
+
+</html>
