@@ -5,24 +5,59 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<link rel="stylesheet" href="css/common.css" />
+	</head>
+
+	<body>
+		<div style="width: 1000px; margin: 0 auto;">
+			<div id="div_btn">
+				<div id="div_add" style="float: left; margin: 20px;">
+					<label class="btn_show">添加数据</label>
+					<input class="btn_show" id="btnAdd1" type="button" value="末尾添加（JQuery） " />
+					<input class="btn_show" id="btnAdd2" type="button" value="末尾添加（JS）" />
+
+					<input class="btn_show" id="btnInsert1" type="button" value="点击插入前节点（JQuery）" />
+					<input class="btn_show" id="btnInsert2" type="button" value="点击插入前节点（JS） " />
+				</div>
+				<div id="div_del" style="float: left; margin: 20px;">
+					<label class="btn_show">删除数据</label>
+					<input class="btn_show" id="btnDel1" type="button" value="点击删除（JQuery）" />
+					<input class="btn_show" id="btnDel2" type="button" value="点击删除（JS）" />
+				</div>
+				<div id="div_mod" style="float: left; margin: 20px;">
+					<label class="btn_show">修改数据</label>
+					<input class="btn_show" id="btnEdit1" type="button" value="点击修改（JQuery）" />
+					<input class="btn_show" id="btnEdit2" type="button" value="点击修改（JS）" />
+				</div>
+				<div id="div_query" style="float: left; margin: 20px;">
+					<label class="btn_show">查找数据</label>
+				</div>
+			</div>
+			<div style="clear: left;  margin: 20px;">
+				<ul id="Ol">
+					<li>第一个</li>
+					<li>第二个</li>
+					<li>第三个</li>
+					<li>第四个</li>
+				</ul>
+			</div>
+		</div>
 		<script src="js/jquery.js"></script>
 		<script>
 			$(function() {
 				gaoliang();
-
+				// JQuery
 				var $seldel = undefined;
+				// JS
 				var seldel = undefined;
 
 				//高亮选中
 				function gaoliang() {
-
 					$("li").click(function() {
 						$("li").css(
 							"backgroundColor", "red"
 						);
 						this.style.backgroundColor = "yellow";
 						$seldel = $(this);
-
 						seldel = this;
 					});
 				}
@@ -30,35 +65,23 @@
 				$("#btnAdd1").click(function() {
 					var input = window.prompt("输入数据");
 					var $newli = $("<li>" + input + "</li>");
-					$newli.appendTo("#Ol");
+					$("#Ol").append($newli);
 					gaoliang();
 				});
 				//使用dom元素添加对象
 				document.getElementById("btnAdd2").onclick = function() {
 					var input = window.prompt("输入数据");
-
 					var newli = document.createElement("li");
 					newli.innerHTML = input;
 					document.getElementById("Ol").appendChild(newli);
 					gaoliang();
-
 				}
-				//使用jquery删除对象
-				$("#btnDel1").click(function() {
-					$seldel.remove();
 
-				});
-				//使用dom元素删除对象
-				document.getElementById("btnDel2").onclick = function() {
-					seldel.parentNode.removeChild(seldel);
-
-				}
 				//使用jquery插入数据
 				$("#btnInsert1").click(function() {
 					var input = window.prompt("输入插入的数据");
 					var $newli = $("<li>" + input + "</li>");
-
-					$newli.insertBefore($seldel);
+					$seldel.before($newli);
 					gaoliang();
 				});
 				//使用dom插入数据
@@ -70,15 +93,26 @@
 					Ol.insertBefore(newli, seldel);
 
 					gaoliang();
+				}
 
+				//使用jquery删除对象
+				$("#btnDel1").click(function() {
+					$seldel.remove();
+
+				});
+				//使用dom元素删除对象
+				document.getElementById("btnDel2").onclick = function() {
+					seldel.parentNode.removeChild(seldel);
 				}
 
 				//使用jquery编辑选中的数据
 				$("#btnEdit1").click(function() {
-					var oldtxt = $seldel.html();
+					var oldtxt = $seldel.text();
 					var $edit = $("<input id='btnE' type='text' value='" + oldtxt + "'/>");
 					$seldel.html($edit);
+					console.log("$seldel -- " + $seldel.html());
 					$edit.focus();
+					// 当失去聚焦，响应回调
 					$edit.blur(function() {
 						var newtxt = $(this).val();
 						$seldel.html(newtxt);
@@ -89,58 +123,16 @@
 				document.getElementById("btnEdit2").onclick = function() {
 					var edittext = document.createElement("input");
 					edittext.type = "text";
-					edittext.value = seldel.innerHTML;;
+					edittext.value = seldel.textContent;
 					seldel.innerHTML = "";
 					seldel.appendChild(edittext);
 					edittext.focus();
-
 					edittext.onblur = function() {
 						seldel.innerHTML = edittext.value;
 					}
-
 				}
-
 			})
 		</script>
-	</head>
-
-	<body>
-		<div style="width: 1000px; margin: 0 auto;">
-			<div id="div_btn">
-				<div id="div_add" style="float: left; margin: 20px;">
-					<label class="btn_show">添加</label>
-					<input class="btn_show" id="btnAdd1" type="button" value="jquery添加数据 " />
-					<input class="btn_show" id="btnAdd2" type="button" value="dom添加数据 " />
-
-					<input class="btn_show" id="btnInsert1" type="button" value="jquery插入数据 " />
-					<input class="btn_show" id="btnInsert2" type="button" value="dom插入数据 " />
-				</div>
-				<div id="div_del" style="float: left; margin: 20px;">
-					<label class="btn_show">删除</label>
-					<input class="btn_show" id="btnDel1" type="button" value="jquery删除数据 " />
-					<input class="btn_show" id="btnDel2" type="button" value="dom删除数据 " />
-				</div>
-				<div id="div_mod" style="float: left; margin: 20px;">
-					<label class="btn_show">修改</label>
-					<input class="btn_show" id="btnEdit1" type="button" value="jquery编辑数据 " />
-					<input class="btn_show" id="btnEdit2" type="button" value="dom编辑数据 " />
-				</div>
-				<div id="div_query" style="float: left; margin: 20px;">
-					<label class="btn_show">查找</label>
-				</div>
-			</div>
-
-			<div style="clear: left;">
-				<ol id="Ol ">
-					<li>1</li>
-					<li>2</li>
-					<li>3</li>
-					<li>4</li>
-				</ol>
-			</div>
-
-		</div>
-
 	</body>
 
 </html>
